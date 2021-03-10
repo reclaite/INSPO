@@ -86,7 +86,7 @@ public class CustomMath {
         if (list[middleNumber] < number) {
             binarySearch(list, number, (middleNumber + 1), max);
         } else if (list[middleNumber] > number) {
-            binarySearch(list, number, 0, (middleNumber - 1));
+            binarySearch(list, number, min, (middleNumber - 1));
         } else {
             System.out.println("Число находится под индексом >> " + middleNumber);
         }
