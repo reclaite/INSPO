@@ -1,26 +1,28 @@
 package ru.kubsu.main.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class CustomMath {
 
     public void findMinMaxMiddle(int x, int y, int z) {
         int min, max, mid;
-        if(x > y) {
+        if (x > y) {
             max = x;
             mid = y;
         } else {
             max = y;
             mid = x;
         }
-        if(z > mid) {
+        if (z > mid) {
             min = mid;
             mid = z;
         } else {
             min = z;
         }
-        if(max < mid) {
+        if (max < mid) {
             max = mid;
             mid = x;
         }
@@ -41,14 +43,14 @@ public class CustomMath {
         int min = minNumber(x, y, z);
         int max = maxNumber(x, y, z);
         return (min == x) ? max == y ? z : y :
-               (min == y) ? max == x ? z : x :
-               (min == z) ? max == x ? y : x : x;
+                (min == y) ? max == x ? z : x :
+                        (min == z) ? max == x ? y : x : x;
     }
 
     public int randomInRange(int min, int max) {
         Random rand = new Random();
         int result = rand.nextInt(max);
-        while(result < min)
+        while (result < min)
             result = rand.nextInt(max);
         return result;
     }
@@ -69,5 +71,44 @@ public class CustomMath {
             min++;
         }
         return array;
+    }
+
+    public void binarySearch(int[] list, int number, int min, int max) {
+        if(max == list.length) {
+            max--;
+        }
+        int middleNumber = (min + max) / 2;
+        System.out.println(Arrays.toString(list) + " " + number + " " + min + " " + max + " " + middleNumber); // debug
+        if (list[middleNumber] != number && min == max) {
+            System.out.println("Числа нет в ряде");
+            return;
+        }
+        if (list[middleNumber] < number) {
+            binarySearch(list, number, (middleNumber + 1), max);
+        } else if (list[middleNumber] > number) {
+            binarySearch(list, number, 0, (middleNumber - 1));
+        } else {
+            System.out.println("Число находится под индексом >> " + middleNumber);
+        }
+
+    }
+
+    public void binarySearchByCycle(int[] list, int number) {
+        int min = 0;
+        int max = list.length - 1;
+        int middleNumber;
+        while (min <= max) {
+            middleNumber = (min + max) / 2;
+            System.out.println(Arrays.toString(list) + " " + number + " " + min + " " + max + " " + middleNumber); // debug
+            if (list[middleNumber] == number) {
+                System.out.println("Число находится под индексом >> " + middleNumber);
+                return;
+            } else if (list[middleNumber] > number) {
+                max = middleNumber - 1;
+            } else {
+                min = middleNumber + 1;
+            }
+        }
+        System.out.println("Числа нет в ряде");
     }
 }
