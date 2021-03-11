@@ -19,10 +19,8 @@ public enum CatColor {
         return name;
     }
 
-    public static <T extends Enum<?>> T getRandomColor(){
+    public static CatColor getRandomColor() {
         Random random = new Random();
-        Class<CatColor> cc = CatColor.class;
-        int x = random.nextInt(cc.getEnumConstants().length);
-        return (T) cc.getEnumConstants()[x];
+        return values()[random.nextInt(values().length)];
     }
 }
