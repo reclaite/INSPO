@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Cat {
+public class Cat implements Mammal {
     private String name;
     private int weight;
     private boolean isAlive = true;
@@ -35,8 +35,8 @@ public class Cat {
         System.out.println("Цвет кота >> " + color.getName());
     }
 
-    String getCatColor() {
-        return color.getName();
+    public CatColor getCatColor() {
+        return color;
     }
 
     public void feedCat() {
@@ -113,5 +113,15 @@ public class Cat {
 
     boolean isAlive() {
         return isAlive;
+    }
+
+    @Override
+    public void breatheAnimal() {
+        System.out.println("Кот" + name + "сделал вдох и выдох...");
+    }
+
+    @Override
+    public void sneezeAnimal() {
+        System.out.println("Кот " + name + " чихнул!");
     }
 }

@@ -14,8 +14,8 @@ public class Kitten extends Cat {
     }
 
     private void setWeights() {
-        super.minWeight = 400;
-        super.maxWeight = 3000;
+        minWeight = 400;
+        maxWeight = 3000;
     }
 
     public void bringVomit() {
@@ -24,6 +24,7 @@ public class Kitten extends Cat {
         System.out.println("Котёнок " + getName() + " обрыгался. Текущий вес кота - " + getWeight() + " (-" + difference + ")");
     }
 
+    @Override
     public void feedCat() {
         if (!super.isAlive()) return;
         int difference = random.randomInRange(75, 150);
@@ -38,7 +39,11 @@ public class Kitten extends Cat {
     }
 
     public String getKittenColor() {
-        return super.getCatColor();
+        return getCatColor().getName();
     }
 
+    @Override
+    public void breatheAnimal() {
+        System.out.println("Котёнок мило подышал...");
+    }
 }

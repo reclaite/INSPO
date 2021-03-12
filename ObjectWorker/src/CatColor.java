@@ -7,7 +7,8 @@ public enum CatColor {
     BLACK("Черный"),
     WHITE("Белый"),
     BROWN("Коричневый"),
-    GRAY("Серый");
+    GRAY("Серый"),
+    PINK("Розовый");
 
     String name;
 
