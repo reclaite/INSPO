@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 public class CoolNumber {
 
@@ -10,7 +12,7 @@ public class CoolNumber {
         String[] alphabet = {"А", "В", "Е", "К", "М", "Н", "О", "Р", "С", "Т", "У", "Х"};
         Date startDate = new Date();
 
-        for (int l = 1; l < 200; l++) {
+        for (int l = 1; l < 2; l++) {
 
             for (String s : alphabet) {
                 //первые 2 нуля
@@ -50,33 +52,21 @@ public class CoolNumber {
 
     public void bruteForce(String sign) {
         Date startDate = new Date();
-        boolean isFound = false;
-        for (String number : numbers) {
-            if (number.equalsIgnoreCase(sign)) {
-                isFound = true;
-                break;
-            }
-        }
+        boolean isFound = numbers.stream().anyMatch(number -> number.equals(sign));
         Date completeDate = new Date();
         System.out.println("Поиск перебором: номер " + (isFound ? "" : "не ") + "найден, поиск занял " + (completeDate.getTime() - startDate.getTime()) + " мс");
     }
 
     public void hashSetSearch(String sign) {
         Date startDate = new Date();
-        boolean isFound = false;
-        if (hashNumbers.contains(sign)) {
-            isFound = true;
-        }
+        boolean isFound = hashNumbers.stream().anyMatch(number -> number.equals(sign));
         Date completeDate = new Date();
         System.out.println("Поиск в HashSet: номер " + (isFound ? "" : "не ") + "найден, поиск занял " + (completeDate.getTime() - startDate.getTime()) + " мс");
     }
 
     public void treeSetSearch(String sign) {
         Date startDate = new Date();
-        boolean isFound = false;
-        if (treeNumbers.contains(sign)) {
-            isFound = true;
-        }
+        boolean isFound = treeNumbers.stream().anyMatch(number -> number.equals(sign));
         Date completeDate = new Date();
         System.out.println("Поиск в TreeSet: номер " + (isFound ? "" : "не ") + "найден, поиск занял " + (completeDate.getTime() - startDate.getTime()) + " мс");
     }
